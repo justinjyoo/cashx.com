@@ -15,6 +15,7 @@ class NavigationBar extends Component {
   }
 
   componentDidMount () {
+    window.addEventListener('mousedown', this.hideModal)
   }
 
   displayModal() {

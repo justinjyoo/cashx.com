@@ -45,6 +45,10 @@ li a, .auth {
     margin-left: -250px;
     margin-top: -50px;
     float: left;
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
 }
 
 .modal-body > input {
@@ -63,4 +67,14 @@ span.close {
     left: 68.5%;
     color: white;
     background-color: rgba(0, 0, 0, 0);
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
 }
