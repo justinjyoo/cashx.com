@@ -23,13 +23,16 @@ class NavigationBar extends Component {
     console.log('displayModal', this.state.modalStyle)
   }
 
-  hideModal() {
-    this.setState({modalStyle: {display: 'none'}})
-    console.log('hideModal', this.state.modalStyle)
+  hideModal(event) {
+    if(event.target.className === 'modal' || event.target.className === 'close') {
+      this.setState({modalStyle: {display: 'none'}})
+      console.log('hideModal', this.state.modalStyle)
+    }
+
   }
 
-  onClickEmptyPlaceholder(e) {
-    e.target.placeholder = ""
+  onClickEmptyPlaceholder(event) {
+    event.target.placeholder = ""
   }
 
   render(){
