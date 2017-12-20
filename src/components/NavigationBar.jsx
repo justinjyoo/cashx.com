@@ -12,15 +12,15 @@ class NavigationBar extends Component {
       lastName:'',
       password:'',
       mobile:'',
-      email:'',
+      email:''
     }
 
     this.displayModal = this.displayModal.bind(this)
     this.hideModal = this.hideModal.bind(this)
+    this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this)
   }
 
   componentDidMount() {
-    window.addEventListener('mousedown', this.hideModal)
   }
 
   displayModal() {
@@ -44,6 +44,22 @@ class NavigationBar extends Component {
 
   handleSignUpSubmit(event) {
     event.preventDefault();
+    const request = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        password: this.state.password,
+        mobile: this.state.mobile,
+        email: this.state.email
+      })
+    }
+    console.log(fetch('/api/signup', request))
+
     console.log(event.target)
   }
 
@@ -64,7 +80,7 @@ class NavigationBar extends Component {
         <input className="auth" type="button" value="Sign Up" onClick={this.displayModal} />
         <input className="auth" type="button" value="Sign In" />
       </div>
-      <div id="myModal" className="modal" style={this.state.modalStyle}>
+      <div id="myModal" className="modal" style={this.state.modalStyle} onClick={this.hideModal}>
         <div className="model-content">
           <div className="modal-body">
             <form onSubmit={this.handleSignUpSubmit}>
@@ -72,7 +88,7 @@ class NavigationBar extends Component {
               <input placeholder="Last Name" onFocus={this.onClickEmptyPlaceholder}  onBlur={(e) => e.target.placeholder = "Last Name"} onChange={(event)=>this.handleSignUpInput(event, 'lastName')} />
               <input placeholder="Email" onFocus={this.onClickEmptyPlaceholder}  onBlur={(e) => e.target.placeholder = "Email"} onChange={(event)=>this.handleSignUpInput(event, 'email')} />
               <input placeholder="Mobile Number" onFocus={this.onClickEmptyPlaceholder}  onBlur={(e) => e.target.placeholder = "Mobile Number"} onChange={(event)=>this.handleSignUpInput(event, 'mobile')} />
-              <input placeholder="New Password" onFocus={this.onClickEmptyPlaceholder}  onBlur={(e) => e.target.placeholder = "New Password"} onChange={(event)=>this.handleSignUpInput(event, 'password')} />
+              <input type="password" placeholder="New Password" onFocus={this.onClickEmptyPlaceholder}  onBlur={(e) => e.target.placeholder = "New Password"} onChange={(event)=>this.handleSignUpInput(event, 'password')} />
               <input className="submit-button" type="submit" value="Submit" />
             </form>
           </div>
