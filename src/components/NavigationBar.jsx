@@ -20,47 +20,40 @@ class NavigationBar extends Component {
     this.handleSignUpSubmit = this.handleSignUpSubmit.bind(this)
   }
 
-  componentDidMount() {
-  }
-
   displayModal() {
     this.setState({modalStyle: {display: 'block'}})
-    console.log('displayModal', this.state.modalStyle)
   }
 
   hideModal(event) {
     if(event.target.className === 'modal' || event.target.className === 'close') {
       this.setState({modalStyle: {display: 'none'}})
-      console.log('hideModal', this.state.modalStyle)
     }
   }
 
   handleSignUpInput(event, field) {
     let returnObj = {};
     returnObj[field] = event.target.value
-    console.log(returnObj)
     this.setState(returnObj)
   }
 
   handleSignUpSubmit(event) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
     event.preventDefault();
-    const request = {
+    const requestObject = {
       method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+      headers: myHeaders,
       body: JSON.stringify({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         password: this.state.password,
         mobile: this.state.mobile,
         email: this.state.email
-      })
-    }
-    console.log(fetch('/api/signup', request))
+      })    }
+    fetch('http://localhost:4000/api/signup', requestObject)
 
-    console.log(event.target)
+    console.log(requestObject)
+
   }
 
   onClickEmptyPlaceholder(event) {
