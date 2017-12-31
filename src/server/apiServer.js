@@ -1,11 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const dotenv = require('dotenv').config();
+const crypto = require('crypto');
+
 
 // parse application/json
 app.use(bodyParser.json())
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.listen(4000, () => console.log('Example app listening on port 4000!'))
 
 // allow server to receive cors requests
 app.use(function(req, res, next) {
@@ -17,8 +22,13 @@ app.use(function(req, res, next) {
 // this is a proxy api server handled through create-react-app
 app.post('/api/signup', (req, res) => {
   console.log(req.body, 'success!')
-  res.send('Hello Worldfd!')
-})
+  const hash = crypto.createHmac('sha256', process.env.I_LOVE_CAKES)
+                   .update(req.body.password)
+                   .digest('hex');
+  const salt = crypto.createHmac('sha256', process.env.I_LOVE_CAKES)
+                   .update(req.body.username.concat(req.body.email))
+                   .digest('hex');
 
-app.listen(4000, () => console.log('Example app listening on port 4000!'))
+  res.send('Hello World!')
+})
 
