@@ -29,6 +29,14 @@ app.post('/api/signup', (req, res) => {
                    .update(req.body.username.concat(req.body.email))
                    .digest('hex');
 
+  const getRandomArbitraryInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  let SMSAuthToken = getRandomArbitraryInt(1, 1000000);
+
+
+
   res.send('Hello World!')
 })
 
