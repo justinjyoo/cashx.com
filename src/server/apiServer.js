@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-// this is a proxy api server handled through create-react-app
+// proxy api server handled through create-react-app
 app.post('/api/signup', (req, res) => {
   console.log(req.body, 'success!')
   const hash = crypto.createHmac('sha256', process.env.I_LOVE_CAKES)
@@ -34,6 +34,8 @@ app.post('/api/signup', (req, res) => {
   }
 
   let SMSAuthToken = getRandomArbitraryInt(1, 1000000);
+
+
 
 
 
