@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const dotenv = require('dotenv').config();
 const crypto = require('crypto');
+const twilio = require('twilio');
+const client = new twilio(process.env.TWILIO_ACCOUNT_SSID, process.env.TWILIO_AUTH_TOKEN);
 
 
 // parse application/json
@@ -35,9 +37,12 @@ app.post('/api/signup', (req, res) => {
 
   let SMSAuthToken = getRandomArbitraryInt(1, 1000000);
 
-
-
-
+  client.messages.create({
+      body: 'Hello from Node',
+      to: '+17143498949',  // Text this number
+      from: '+14243736887 ' // From a valid Twilio number
+  })
+  .then((message) => console.log(message.sid));
 
   res.send('Hello World!')
 })
