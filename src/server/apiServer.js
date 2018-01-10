@@ -39,11 +39,10 @@ app.post('/api/signup', (req, res) => {
 
   client.messages.create({
       body: 'Hello from Node',
-      to: '+17143498949',  // Text this number
+      to: '+1'.concat(req.body.mobile),  // Text this number
       from: '+14243736887 ' // From a valid Twilio number
   })
   .then((message) => console.log(message.sid));
-
+  console.log(message)
   res.send('Hello World!')
 })
-
