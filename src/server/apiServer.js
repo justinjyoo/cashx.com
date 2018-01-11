@@ -42,7 +42,9 @@ app.post('/api/signup', (req, res) => {
       to: '+1'.concat(req.body.mobile),  // Text this number
       from: '+14243736887 ' // From a valid Twilio number
   })
-  .then((message) => console.log(message.sid));
-  console.log(message)
+  .then((message) => {
+    console.log(message)
+  });
+
   res.send('Hello World!')
 })
