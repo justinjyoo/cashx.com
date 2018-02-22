@@ -38,12 +38,12 @@ app.post('/api/signup', (req, res) => {
   let SMSAuthToken = getRandomArbitraryInt(1, 1000000);
 
   client.messages.create({
-      body: 'Hello from Node',
+      body: 'Hi this is CashX! Your one-time code is '.concat(SMSAuthToken.toString()),
       to: '+1'.concat(req.body.mobile),  // Text this number
       from: '+14243736887 ' // From a valid Twilio number
   })
   .then((message) => {
-    console.log(message)
+
   });
 
   res.send('Hello World!')
