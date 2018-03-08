@@ -11,6 +11,7 @@ class SignUpModal extends React.Component {
       username: 'Pick your username',
       password:'Choose your password',
       mobile:'Mobile Number',
+      test: 'test',
       email:'Email'
     }
 
