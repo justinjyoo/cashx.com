@@ -5,7 +5,7 @@ class SignUpModal extends React.Component {
     super(props)
     this.state = {
       signedIn: false,
-      modalStyle: {display: 'none'},
+      modalStyle: {display: 'show'},
       firstName: 'First name',
       lastName:'Last name',
       username: 'Pick your username',

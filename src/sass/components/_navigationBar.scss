@@ -1,21 +1,40 @@
 .nav-bar {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   list-style-type: none;
+  background-color: $nav-background-color;
+  padding: 20px;
+  margin-top: 0;
+  height: 20px;
+  color: $text-color;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+  li {
+    margin-left: 30px
+  }
+
+  #logo {
+    margin-right: auto;
+    font-size: 1.25em;
+  }
+
 
   a {
     text-decoration: none;
-    font-size: 1em;
+    font-size: 1.25em;
+    color: $text-color
   }
 
   .auth {
     background:none;
     border:none;
-    font-size:1em;
+    font-size:1.25em;
     box-shadow: none;
     box-sizing: border-box;
     padding: 0;
     font-family: sans-serif;
+    color: $text-color;
   }
 }
 
